@@ -1,4 +1,4 @@
-FROM golang:1.20-alpine3.18 as build
+FROM golang:1.24-alpine3.18 as build
 WORKDIR /build
 ENV \
     TERM=xterm-color \
