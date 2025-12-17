@@ -7,7 +7,7 @@ ENV \
     GOFLAGS="-mod=vendor"
 
 RUN echo "## Prepare deps" && \
-    apk add --no-cache --update tzdata gcc libc-dev && \
+    (apk add --no-cache --update tzdata gcc libc-dev || true) && \
     cp /usr/share/zoneinfo/${TIME_ZONE} /etc/localtime && \
     echo "${TIME_ZONE}" > /etc/timezone && date
 
