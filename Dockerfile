@@ -1,4 +1,4 @@
-FROM golang:1.24-alpine3.18 as build
+FROM golang:1.24-alpine3.23 AS build
 WORKDIR /build
 ENV \
     TERM=xterm-color \
@@ -20,7 +20,7 @@ RUN go env
 RUN go version
 RUN echo "  ## Build" && go build -o app .
 
-FROM alpine:3.18
+FROM alpine:3.23
 WORKDIR /app
 COPY --from=build /build/app ./app
 COPY --from=build /etc/localtime /etc/localtime
