@@ -1,0 +1,30 @@
+---
+description:
+globs:
+alwaysApply: true
+---
+## TDD FLOW
+
+1. **Red**
+   - Write a simple test for new behavior or to reproduce a bug.
+   - Run it with `deno test <test_id>`.
+
+2. **Green**
+   - Write just enough code to pass the test.
+   - Run `deno test <test_id>` again to confirm it passes.
+
+3. **Refactor**
+   - Improve code and tests without changing what they do.
+   - Remove duplicates and make things clearer.
+   - Run `deno test <test_id>` to ensure it still works.
+
+4. **Final Check**
+   - Run `deno fmt && deno lint && deno test` to make sure everything is correct.
+   - Fix all problems, including lint errors and warnings.
+
+### Test Rules
+
+- Put tests in the same package as the code being tested. It's okay to test private methods.
+- Don't write code just to satisfy tests unless it fixes real issues.
+- Don't use stubs—write real, working code.
+- You can rerun specific tests to save time, but always run all tests before finishing.
