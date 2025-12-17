@@ -4,6 +4,7 @@ import (
 	"configBin/pkg"
 	"configBin/pkg/storage"
 	"database/sql"
+	"errors"
 	"fmt"
 	"time"
 
@@ -12,7 +13,7 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
-var ErrBinNotFound = fmt.Errorf("no bin found")
+var ErrBinNotFound = errors.New("no bin found")
 
 type Storage struct {
 	db        *sql.DB

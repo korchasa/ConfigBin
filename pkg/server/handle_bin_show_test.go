@@ -7,18 +7,19 @@ import (
 
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 )
 
 func TestHandleBinShow(t *testing.T) {
 	srv, store, err := NewTestingServer("./TestHandleBinShow.sqlite")
-	assert.NoError(t, err)
+	require.NoError(t, err)
 	t.Parallel()
 
 	// Test case: Successful bin show
 	t.Run("successful bin show", func(t *testing.T) {
 		t.Parallel()
 
-		binID := createBinForTest(t, store, "test", "test_content")
+		binID := createBinForTest(t, store)
 
 		req := requestWithFormAndCookie(formRequestSpec{
 			method:         "GET",
@@ -38,7 +39,7 @@ func TestHandleBinShow(t *testing.T) {
 	t.Run("invalid bin id", func(t *testing.T) {
 		t.Parallel()
 
-		binID := createBinForTest(t, store, "test", "test_content")
+		binID := createBinForTest(t, store)
 
 		req := requestWithFormAndCookie(formRequestSpec{
 			method:         "GET",
@@ -76,7 +77,7 @@ func TestHandleBinShow(t *testing.T) {
 	t.Run("missing password cookie", func(t *testing.T) {
 		t.Parallel()
 
-		binID := createBinForTest(t, store, "test", "test_content")
+		binID := createBinForTest(t, store)
 
 		req := requestWithFormAndCookie(formRequestSpec{
 			method:         "GET",

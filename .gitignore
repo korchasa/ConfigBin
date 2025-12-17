@@ -4,3 +4,4 @@ var
 gin-bin
 .env
 
+app

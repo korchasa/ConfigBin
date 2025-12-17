@@ -68,10 +68,10 @@ func requestWithFormAndCookie(spec formRequestSpec) *http.Request {
 	return req
 }
 
-func createBinForTest(t *testing.T, store *sqlite.Storage, pass string, content string) uuid.UUID { //nolint:unparam
+func createBinForTest(t *testing.T, store *sqlite.Storage) uuid.UUID {
 	t.Helper()
 	binID := uuid.New()
-	err := store.CreateBin(binID, pass, content)
+	err := store.CreateBin(binID, "test", "test_content")
 	assert.NoError(t, err)
 	return binID
 }

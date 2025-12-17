@@ -2,7 +2,6 @@ package server
 
 import (
 	"configBin/pkg/server/utils"
-	"fmt"
 	"net/http"
 
 	"github.com/google/uuid"
@@ -50,6 +49,6 @@ func (s *Server) handleBinCreate() http.HandlerFunc {
 
 		log.Infof("bin created: %s", bid.String())
 
-		http.Redirect(resp, req, fmt.Sprintf("/%s", bid.String()), http.StatusFound)
+		http.Redirect(resp, req, "/"+bid.String(), http.StatusFound)
 	}
 }

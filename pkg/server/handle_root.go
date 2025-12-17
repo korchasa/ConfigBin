@@ -2,8 +2,9 @@ package server
 
 import (
 	"configBin/pkg/server/utils"
-	"github.com/google/uuid"
 	"net/http"
+
+	"github.com/google/uuid"
 )
 
 const defaultPasswordLength = 8

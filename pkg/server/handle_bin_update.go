@@ -2,7 +2,6 @@ package server
 
 import (
 	"configBin/pkg/server/utils"
-	"fmt"
 	"net/http"
 
 	log "github.com/sirupsen/logrus"
@@ -39,6 +38,6 @@ func (s *Server) handleBinUpdate() http.HandlerFunc {
 
 		log.Infof("bin updated: %s", binID.String())
 
-		http.Redirect(resp, req, fmt.Sprintf("/%s", binID.String()), http.StatusFound)
+		http.Redirect(resp, req, "/"+binID.String(), http.StatusFound)
 	}
 }

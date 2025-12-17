@@ -11,7 +11,7 @@ ConfigBin/
 ├── go.mod                   # Go module definition
 ├── go.sum                   # Dependency checksums
 ├── README.md                # Project overview
-└── run.sh                   # Execution script
+└── run.ts                   # Project automation script (Deno)
 ```
 
 ## Sources (`pkg/`)

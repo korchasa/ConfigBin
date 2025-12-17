@@ -2,13 +2,13 @@ package server
 
 import (
 	"configBin/pkg/server/utils"
-	"fmt"
+	"errors"
 	"net/http"
 
 	log "github.com/sirupsen/logrus"
 )
 
-var ErrBinNotFoundByID = fmt.Errorf("no bin found by id")
+var ErrBinNotFoundByID = errors.New("no bin found by id")
 
 // handleShowEventSchema is the handler to show event schema.
 func (s *Server) handleBinAuth() http.HandlerFunc {
@@ -45,6 +45,6 @@ func (s *Server) handleBinAuth() http.HandlerFunc {
 
 		log.Infof("bin authed: %s", bid.String())
 
-		http.Redirect(resp, req, fmt.Sprintf("/%s", bid.String()), http.StatusFound)
+		http.Redirect(resp, req, "/"+bid.String(), http.StatusFound)
 	}
 }
