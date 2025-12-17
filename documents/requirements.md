@@ -58,10 +58,18 @@
   - [x] Versions stored (incrementing).
   - [x] DESC order retrieval.
 
+### 3.7 FR-7: Secure Key Derivation
+- **Action:** Use Argon2id for password-based key derivation.
+- **Criteria:**
+  - [ ] Generate random salt per bin (32 bytes).
+  - [ ] Store salt unencrypted alongside encrypted data.
+  - [ ] Use Argon2id with recommended parameters (time=3, memory=65536, parallelism=4).
+  - [ ] Maintain backward compatibility with existing SHA-256 hashes during migration.
+
 ## 4. Non-Functional
 - **Performance:** Read <5min; Write <10s; DB indexed.
 - **Reliability:** Liveness/Readiness probes.
-- **Security:** AES-256-GCM; SHA-256 key derivation; No stored passwords; HttpOnly cookies.
+- **Security:** AES-256-GCM; Argon2id key derivation; No stored passwords; HttpOnly cookies.
 - **Scalability:** Single-instance; SQLite.
 - **Observability:** Prometheus metrics; Logrus logging.
 

@@ -18,7 +18,7 @@ func TestHandleAPIGetBin(t *testing.T) {
 	t.Parallel()
 
 	binID := uuid.New()
-	binPass := "test:@\""
+	binPass := "test1234:@\""
 	binCredsHeader := base64.StdEncoding.EncodeToString([]byte(fmt.Sprintf("%s:%s", "any-name", binPass)))
 	err = store.CreateBin(binID, binPass, "test_content")
 	require.NoError(t, err)

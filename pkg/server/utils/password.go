@@ -19,6 +19,7 @@ func PasswordCookie(bid uuid.UUID, pass string) *http.Cookie {
 		Path:     "/",
 		MaxAge:   dayInSeconds,
 		HttpOnly: true,
+		Secure:   true,
 		SameSite: http.SameSiteLaxMode,
 	}
 }

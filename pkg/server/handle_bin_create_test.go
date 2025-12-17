@@ -23,7 +23,7 @@ func TestHandleBinCreate(t *testing.T) {
 		req := requestWithForm(formRequestSpec{
 			method:   "POST",
 			path:     "/create",
-			formData: "uuid=" + bid + "&password=test&content=test_content",
+			formData: "uuid=" + bid + "&password=test1234&content=test_content",
 		})
 		resp := httptest.NewRecorder()
 
@@ -93,7 +93,7 @@ func TestHandleBinCreate(t *testing.T) {
 		req := requestWithForm(formRequestSpec{
 			method:   "POST",
 			path:     "/create",
-			formData: "uuid=" + bid + "&password=test",
+			formData: "uuid=" + bid + "&password=test1234",
 		})
 		resp := httptest.NewRecorder()
 
@@ -101,5 +101,23 @@ func TestHandleBinCreate(t *testing.T) {
 
 		assert.Equal(t, http.StatusBadRequest, resp.Code)
 		assert.Contains(t, resp.Body.String(), "empty_content")
+	})
+
+	// Test case: Password too short
+	t.Run("password too short", func(t *testing.T) {
+		t.Parallel()
+
+		bid := uuid.New().String()
+		req := requestWithForm(formRequestSpec{
+			method:   "POST",
+			path:     "/create",
+			formData: "uuid=" + bid + "&password=short&content=test_content",
+		})
+		resp := httptest.NewRecorder()
+
+		srv.ServeHTTP(resp, req)
+
+		assert.Equal(t, http.StatusBadRequest, resp.Code)
+		assert.Contains(t, resp.Body.String(), "password_too_short")
 	})
 }

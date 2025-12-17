@@ -76,6 +76,10 @@ func (e *Encryptor) Decrypt(data string, password string) (string, error) {
 
 func createPasswordHash(password string) []byte {
 	// Create a new hash.
+	// TODO: Replace with Argon2id or Scrypt for better security against brute-force attacks.
+	// Currently using SHA-256 for speed, but this is vulnerable to rainbow table attacks if the DB is leaked
+	// (though mitigated by the fact that the server doesn't store the password, it only stores the data encrypted with it).
+	// To fix this properly, we need to generate a random salt per bin, store it unencrypted, and use it in the KDF.
 	h := sha256.New()
 	// Write password to hash.
 	h.Write([]byte(password))

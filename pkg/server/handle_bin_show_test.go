@@ -25,7 +25,7 @@ func TestHandleBinShow(t *testing.T) {
 			method:         "GET",
 			path:           "/" + binID.String(),
 			cookieBinID:    binID,
-			cookiePassword: "test",
+			cookiePassword: "test1234",
 		})
 		resp := httptest.NewRecorder()
 

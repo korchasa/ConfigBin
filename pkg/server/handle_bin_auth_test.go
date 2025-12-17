@@ -22,7 +22,7 @@ func TestHandleBinAuth(t *testing.T) {
 		req := requestWithForm(formRequestSpec{
 			method:   "POST",
 			path:     "/" + binID.String() + "/auth",
-			formData: "password=test",
+			formData: "password=test1234",
 		})
 		resp := httptest.NewRecorder()
 

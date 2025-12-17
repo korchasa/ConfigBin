@@ -33,6 +33,10 @@ func (s *Server) handleBinCreate() http.HandlerFunc {
 			s.resp.HTMLError(req, resp, http.StatusBadRequest, "empty_password", ErrEmptyPassword)
 			return
 		}
+		if len(pass) < 8 {
+			s.resp.HTMLError(req, resp, http.StatusBadRequest, "password_too_short", ErrPasswordTooShort)
+			return
+		}
 
 		unencryptedData := req.Form.Get("content")
 		if unencryptedData == "" {

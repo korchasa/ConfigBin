@@ -26,7 +26,7 @@ func TestHandleBinUpdate(t *testing.T) {
 			path:           "/" + binID.String() + "/update",
 			formData:       "content=updated_content",
 			cookieBinID:    binID,
-			cookiePassword: "test",
+			cookiePassword: "test1234",
 		})
 		resp := httptest.NewRecorder()
 
@@ -47,7 +47,7 @@ func TestHandleBinUpdate(t *testing.T) {
 			path:           "/invalid/update",
 			formData:       "content=updated_content",
 			cookieBinID:    binID,
-			cookiePassword: "test",
+			cookiePassword: "test1234",
 		})
 		resp := httptest.NewRecorder()
 
@@ -67,7 +67,7 @@ func TestHandleBinUpdate(t *testing.T) {
 			path:           "/00000000-0000-0000-0000-000000000000/update",
 			formData:       "content=updated_content",
 			cookieBinID:    binID,
-			cookiePassword: "test",
+			cookiePassword: "test1234",
 		})
 		resp := httptest.NewRecorder()
 
@@ -87,7 +87,7 @@ func TestHandleBinUpdate(t *testing.T) {
 			path:           "/" + binID.String() + "/update",
 			formData:       "",
 			cookieBinID:    binID,
-			cookiePassword: "test",
+			cookiePassword: "test1234",
 		})
 		resp := httptest.NewRecorder()
 

@@ -12,7 +12,7 @@
 ### Components
 1. **HTTP Server:** Gorilla Mux, Handlers, Middleware.
 2. **Storage:** SQLite (encrypted data).
-3. **Encryption:** AES-256-GCM (SHA-256 key derivation).
+3. **Encryption:** AES-256-GCM (SHA-256 key derivation; planned Argon2id migration).
 4. **Templates:** Go HTML templates.
 5. **Observability:** Prometheus metrics.
 
@@ -37,7 +37,7 @@
 
 ### 3.3 Encryptor (`pkg/encryptor/aes`)
 - **Algo:** AES-256-GCM.
-- **Key:** SHA-256(password).
+- **Key:** SHA-256(password) [DEPRECATED: migrate to Argon2id with salt].
 - **Nonce:** Random 12 bytes.
 - **Format:** Base64(Encrypted).
 
@@ -55,12 +55,14 @@
 - **Encryption:** Pass -> Key; Nonce + Data -> Encrypt -> Base64.
 - **Decryption:** Base64 -> Nonce + Cipher -> Decrypt.
 - **Versioning:** Linear increment per UUID.
+- **Key Derivation:** SHA-256 (migrate to Argon2id + salt for enhanced security).
 
 ## 6. Non-Functional
-- **Security:** Zero-knowledge (server lacks password persistence).
+- **Security:** Zero-knowledge (server lacks password persistence); enhanced key derivation planned.
 - **Scalability:** Vertical only (SQLite limit).
 - **Reliability:** Graceful shutdown; DB ping check.
 
 ## 7. Status
 - **Simplified:** No accounts, RBAC, or recovery.
 - **Deferred:** Syntax highlight, Revert UI, Multi-format.
+- **Security Enhancement:** Argon2id key derivation migration pending.

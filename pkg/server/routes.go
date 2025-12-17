@@ -5,10 +5,11 @@ import (
 )
 
 var (
-	ErrEmptyUUID     = errors.New("empty uuid")
-	ErrEmptyPassword = errors.New("empty password")
-	ErrEmptyContent  = errors.New("empty content")
-	ErrInvalidBinID  = errors.New("invalid bin id")
+	ErrEmptyUUID        = errors.New("empty uuid")
+	ErrEmptyPassword    = errors.New("empty password")
+	ErrPasswordTooShort = errors.New("password too short")
+	ErrEmptyContent     = errors.New("empty content")
+	ErrInvalidBinID     = errors.New("invalid bin id")
 )
 
 func (s *Server) routes() {
