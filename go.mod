@@ -1,12 +1,12 @@
 module configBin
 
-go 1.24
+go 1.24.0
 
 require (
 	github.com/Masterminds/sprig/v3 v3.2.3
 	github.com/google/uuid v1.3.0
 	github.com/gorilla/mux v1.8.0
-	github.com/mattn/go-sqlite3 v1.14.17
+	github.com/mattn/go-sqlite3 v1.14.32
 	github.com/prometheus/client_golang v1.15.1
 	github.com/sirupsen/logrus v1.9.3
 	github.com/stretchr/testify v1.8.1
