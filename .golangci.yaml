@@ -1,45 +1,73 @@
-run:
-  skip-dirs:
-    - vendor
-    - .git
-    - .idea
-    - .github
-    - var
+version: "2"
 linters:
-  enable-all: true
+  default: all
   disable:
-    - varcheck
-    - exhaustruct
     - depguard
-    - wsl
-    - gci
+    - embeddedstructfieldcheck
+    - exhaustruct
+    - goconst
+    - godox
+    - gomodguard
+    - gosec
+    - lll
+    - mnd
+    - modernize
+    - nilnesserr
     - nlreturn
-    - scopelint
-    - structcheck
-    - nosnakecase
-    - maligned
-    - interfacer
-    - ifshort
-    - golint
-    - exhaustivestruct
-    - deadcode
-linters-settings:
-  varnamelen:
-    min-len: 2
+    - noctx
+    - noinlineerr
+    - perfsprint
+    - wsl
+    - wsl_v5
+  settings:
+    varnamelen:
+      min-name-length: 2
+  exclusions:
+    generated: lax
+    presets:
+      - comments
+      - common-false-positives
+      - legacy
+      - std-error-handling
+    rules:
+      - linters:
+          - dupl
+          - errcheck
+          - funlen
+          - gocyclo
+          - gosec
+          - noctx
+          - paralleltest
+          - tparallel
+        path: _test\.go
+      - linters:
+          - forbidigo
+          - nilnil
+        path-except: _test\.go
+    paths:
+      - vendor
+      - .git
+      - .idea
+      - .github
+      - var
+      - third_party$
+      - builtin$
+      - examples$
 issues:
-  exclude-rules:
-    - path: _test\.go
-      linters:
-        - gocyclo
-        - errcheck
-        - dupl
-        - gosec
-        - noctx
-        - funlen
-        - tparallel
-        - paralleltest
-    - path-except: _test\.go
-      linters:
-        - forbidigo
-        - nilnil
-  fix: true
+  fix: false
+formatters:
+  enable:
+    - gofmt
+    - gofumpt
+    - goimports
+  exclusions:
+    generated: lax
+    paths:
+      - vendor
+      - .git
+      - .idea
+      - .github
+      - var
+      - third_party$
+      - builtin$
+      - examples$
